@@ -1,5 +1,22 @@
 #!/usr/bin/python
 
+# camToggle Indicator - indicator applet for enabling/disabling the webcam
+# Copyright (C) 2015 Deepak Srivastav
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
 import sys
 import gtk
 import appindicator
@@ -48,12 +65,21 @@ class CamToggle:
         self.cam_off_item.connect("activate", self.camOff)
         self.cam_off_item.show()
 
+        self.separator_item = gtk.SeparatorMenuItem()
+        self.separator_item.show()
+
+        self.about_item = gtk.MenuItem("About")
+        self.about_item.connect("activate", self.item_about)
+        self.about_item.show()
+
         self.quit_item = gtk.MenuItem("Quit")
         self.quit_item.connect("activate", self.quit)
         self.quit_item.show()
 
         self.menu.append(self.cam_on_item)
         self.menu.append(self.cam_off_item)
+        self.menu.append(self.separator_item)
+        self.menu.append(self.about_item)
         self.menu.append(self.quit_item)
 
     def camOn(self, widget):
@@ -75,6 +101,17 @@ class CamToggle:
 
     def quit(self, widget):
         sys.exit(0)
+
+    def item_about(self, widget):
+        dialog = gtk.AboutDialog()
+        dialog.set_name("camToggle Indicator")
+        dialog.set_copyright('Written by Deepak Srivastav')
+        dialog.set_license("GPL v2")
+        dialog.set_version("1")
+        dialog.set_website('http://deepaksrivastav.github.io')
+        dialog.set_website_label('http://deepaksrivastav.github.io')
+        dialog.connect("response", lambda x,y: dialog.destroy())
+        dialog.run()
 
 if __name__ == "__main__":
     indicator = CamToggle()
