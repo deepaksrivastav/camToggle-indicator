@@ -57,11 +57,11 @@ class CamToggle:
     def menuSetup(self):
         self.menu = gtk.Menu()
 
-        self.cam_on_item = gtk.MenuItem("Cam ON");
+        self.cam_on_item = gtk.MenuItem("Cam On");
         self.cam_on_item.connect("activate", self.camOn)
         self.cam_on_item.show()
 
-        self.cam_off_item = gtk.MenuItem("Cam OFF");
+        self.cam_off_item = gtk.MenuItem("Cam Off");
         self.cam_off_item.connect("activate", self.camOff)
         self.cam_off_item.show()
 
@@ -107,7 +107,7 @@ class CamToggle:
         dialog.set_name("camToggle Indicator")
         dialog.set_copyright('Written by Deepak Srivastav')
         dialog.set_license("GPL v2")
-        dialog.set_version("1")
+        dialog.set_version("1.0")
         dialog.set_website('http://deepaksrivastav.github.io')
         dialog.set_website_label('http://deepaksrivastav.github.io')
         dialog.connect("response", lambda x,y: dialog.destroy())
